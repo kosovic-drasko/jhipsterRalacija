@@ -1,0 +1,14 @@
+{
+  "changelogDate": "20220316173744",
+  "fields": [
+    {
+      "fieldName": "nazivPonudjaca",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Ponudjaci",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

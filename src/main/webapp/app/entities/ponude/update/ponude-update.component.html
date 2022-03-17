@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-ponude-heading" data-cy="PonudeCreateUpdateHeading">Create or edit a Ponude</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_sifraPostupka">Sifra Postupka</label>
+          <input
+            type="number"
+            class="form-control"
+            name="sifraPostupka"
+            id="field_sifraPostupka"
+            data-cy="sifraPostupka"
+            formControlName="sifraPostupka"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nazivLijeka">Naziv Lijeka</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nazivLijeka"
+            id="field_nazivLijeka"
+            data-cy="nazivLijeka"
+            formControlName="nazivLijeka"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_iznos">Iznos</label>
+          <input type="text" class="form-control" name="iznos" id="field_iznos" data-cy="iznos" formControlName="iznos" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_ponudjaci">Ponudjaci</label>
+          <select class="form-control" id="field_ponudjaci" data-cy="ponudjaci" name="ponudjaci" formControlName="ponudjaci">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="ponudjaciOption.id === editForm.get('ponudjaci')!.value?.id ? editForm.get('ponudjaci')!.value : ponudjaciOption"
+              *ngFor="let ponudjaciOption of ponudjacisCollection; trackBy: trackPonudjaciById"
+            >
+              {{ ponudjaciOption.nazivPonudjaca }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

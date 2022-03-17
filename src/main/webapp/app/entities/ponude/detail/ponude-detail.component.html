@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ponude">
+      <h2 data-cy="ponudeDetailsHeading"><span>Ponude</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ ponude.id }}</span>
+        </dd>
+        <dt><span>Sifra Postupka</span></dt>
+        <dd>
+          <span>{{ ponude.sifraPostupka }}</span>
+        </dd>
+        <dt><span>Naziv Lijeka</span></dt>
+        <dd>
+          <span>{{ ponude.nazivLijeka }}</span>
+        </dd>
+        <dt><span>Iznos</span></dt>
+        <dd>
+          <span>{{ ponude.iznos }}</span>
+        </dd>
+        <dt><span>Ponudjaci</span></dt>
+        <dd>
+          <div *ngIf="ponude.ponudjaci">
+            <a [routerLink]="['/ponudjaci', ponude.ponudjaci?.id, 'view']">{{ ponude.ponudjaci?.nazivPonudjaca }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ponude', ponude.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
